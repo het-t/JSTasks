@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Form Validation</h2>
+
+      <input type="text" id="name" placeholder="Enter Name" /> <br>
+      <input type="email" id="email" placeholder="Enter Email" /> <br>
+      <input type="password" id="password" placeholder="Enter Password" /> <br>
+      
+      <button id="submit">Submit</button>
+
+      <p id="errorEle"></p>
+    </div>
+
+    <script>
+      const PWD_LEN = 5;
+
+      document.getElementById("submit").addEventListener("click", (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        const errorEle = document.getElementById("errorEle");
+        errorEle.textContent = "";
+
+        if (!name.length) errorEle.textContent += "\nName is required!";
+        if (!(email.length && email.includes("@"))) errorEle.textContent += "\nEnter a valid email!";
+        if (password.length < PWD_LEN) errorEle.textContent += "\nPassword must be at least 6 characters!";
+      });
+    </script>
+  </body>
+</html>

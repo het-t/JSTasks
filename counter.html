@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Counter</title>
+    </head>
+
+    <body>
+        <h1 id="counter">0</h1>
+
+        <button id="inc">+</button>
+        <button id="dec">-</button>
+    </body>
+
+    <script>
+        let counter = 0;
+        const COUNTER_MAX = 10, COUNTER_MIN = 0;
+        const counterEle = document.getElementById("counter");
+
+        document.getElementById("inc").addEventListener("click", (e) => {
+            const oldValue = counter;
+            try {
+                updateCounterContent(++counter);
+            } catch(e) {
+                alert(e);
+                counter = oldValue;
+            }
+        });
+
+            const oldValue = counter;
+        document.getElementById("dec").addEventListener("click", (e) => {
+            const oldValue = counter;
+            try {
+                updateCounterContent(--counter);
+            } catch(e) {
+                alert(e);
+                counter = oldValue;
+            }
+        });
+
+        function updateCounterContent(value) {
+            if(isValidUpdate(value)) {
+                counterEle.innerText = value;
+            }
+        }
+
+        function isValidUpdate(newValue) {
+            if(newValue < COUNTER_MIN) throw new Error("COUNTER_UNDERFLOW");
+            if(newValue > COUNTER_MAX) throw new Error("COUNTER_OVERFLOW");
+
+            return true;
+        }
+    </script>
+</html>

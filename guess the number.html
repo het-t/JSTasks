@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Guess the number</title>
+    </head>
+
+    <body>
+        <label for="guess">Guess here</label> <br>
+        <input id="guess" type="number">
+
+        <button id="check-guess-btn" type="submit">Submit</button>
+    </body>
+
+    <script>
+        const sysGeneratedRandomNum = (100*Math.random()).toFixed(0);
+        console.log("sys generated num " + sysGeneratedRandomNum);
+
+        const checkGuess = (guess) => guess === sysGeneratedRandomNum;
+
+        document.getElementById("check-guess-btn").addEventListener("click", (e) => {
+            e.preventDefault();
+            const userGuess = document.getElementById("guess").value;
+
+            const isCorrectGuess = checkGuess(userGuess);
+            alert(isCorrectGuess);
+        });
+    </script>
+</html>

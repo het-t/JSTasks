@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Local Storage</title>
+    </head>
+
+    <body>
+        <label for="username">Username</label>
+        <input id="username"/> <br>
+
+        <label for="password">Password</label>
+        <input id="password"/> <br>
+
+        <button id="t1-submit" type="submit">Submit</button>
+    </body>
+
+    <script>
+        function saveUserInfoInLocalStorage(e) {
+            e.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            localStorage.setItem("user_info", JSON.stringify({ username, password }));
+
+            showAlertOnSave();
+        }
+
+        function showAlertOnSave() {
+            const { username, password } = JSON.parse(localStorage.getItem("user_info"));
+
+            alert("username: " + username + "\n" + "password: " + password);
+        }
+
+        document.getElementById("t1-submit").addEventListener("click", (event) => saveUserInfoInLocalStorage(event));
+    </script>
+</html>
